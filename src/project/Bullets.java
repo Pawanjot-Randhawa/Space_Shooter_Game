@@ -4,20 +4,29 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 
 public class Bullets {
-	//location and movement speed values
+	// Location and movement speed values
 	private int x;
 	private int y;
 	private int xspeed;
 	private int yspeed;
 	
-	//size values
+	// Size values
 	private int height;
 	private int width;
 	
-	//damage value
+	// Damage value
 	private int damage;
-	
-	//the constructor gives all the variables a value
+
+	/**
+	 * Constructor to initialize bullet properties.
+	 * @param x      x-coordinate of the bullet
+	 * @param y      y-coordinate of the bullet
+	 * @param height height of the bullet
+	 * @param width  width of the bullet
+	 * @param xspeed speed of the bullet along the x-axis
+	 * @param yspeed speed of the bullet along the y-axis
+	 * @param damage damage value of the bullet
+	 */
 	public Bullets(int x, int y, int height, int width, int xspeed, int yspeed, int damage){
 		this.x = x;
 		this.y = y;
@@ -27,62 +36,54 @@ public class Bullets {
 		this.yspeed = yspeed;
 		this.damage = damage;
 	}
-	/*
-	 * Input:x value
-	 * Output:sets xspeed value
-	 * Process:sets xspeed value
+	/**
+	 * Sets speed in x-axis direction
+	 * @param speed the speed of bullet on the x-axis
 	 */
-	public void setXspeed(int x) {
-		xspeed = x;
+	public void setXspeed(int speed) {
+		xspeed = speed;
 	}
-	/*
-	 * Input:N/a
-	 * Output:return x value
-	 * Process:return x value
+	/**
+	 * Returns the bullets x-coordinate
+	 * @return x-coordinate of the bullet
 	 */
 	public int getX() {
 		return x;
 	}
-	/*
-	 * Input:N/a
-	 * Output:return damage value
-	 * Process:return damage value
-	 */
-	public int getDamage() {
-		return damage;
-	}
-	/*
-	 * Input:N/a
-	 * Output:returns a border around the bullet
-	 * Process:makes a rectangle around the bullet
-	 */
-	public Rectangle bulletBounds() {
-		return new Rectangle (x, y, height, width);
-	}
-	/*
-	 * Input:N/a
-	 * Output:return y value
-	 * Process:return y value
+	/**
+	 * Return the bullets y-coordinate
+	 * @return y-coordinate of the bullet
 	 */
 	public int getY() {
 		return y;
 	}
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:updates the bullets location using the speed values
+	/**
+	 * Returns the damage value of the bullet
+	 * @return damage value of the bullet
+	 */
+	public int getDamage() {
+		return damage;
+	}
+	/**
+	 * Makes a Rectangle Object identical to the bullet and returns it
+	 * @return Rectangle
+	 */
+	public Rectangle bulletBounds() {
+		return new Rectangle (x, y, height, width);
+	}
+	/**
+	 * Updates all values associated with bullet movement
 	 */
 	public void update() {
 		x += xspeed;
 		y += yspeed;	
 	}
-	/*
-	 * Input:N/a
-	 * Output:image
-	 * Process:draws the bullets
+	/**
+	 * Draws the bullet on screen based on bullet properties
+	 * @param g2 the graphics object
+	 * @param color the color of this bullet
 	 */
 	public void draw(Graphics2D g2, Color color) {
-		//these 2 lines draw the bullet
 		g2.setColor(color);
 		g2.fillRect(x, y, width, height);
 		
