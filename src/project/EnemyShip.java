@@ -23,8 +23,15 @@ public class EnemyShip {
 	
 	public boolean alive;//enemy alive status
 	int difficulty;//difficulty modifier
-	
-	//the constructor set up our enemy with all the basic values we need 
+
+	/**
+	 * Constructor to initialize enemy object.
+	 * @param x      starting x-coordinate of the bullet
+	 * @param y      starting y-coordinate of the bullet
+	 * @param health health of this enemy
+	 * @param speed  speed of this enemy
+	 * @param modifier difficulty value of this enemy; affects bullet properties
+	 */
 	public EnemyShip(int x, int y, int health, int speed, int modifier) {
 		this.x=x;
 		this.y=y;
@@ -33,42 +40,38 @@ public class EnemyShip {
 		difficulty = modifier;
 		alive = true;		
 	}
-	/*
-	 * Input:Bullets instance
-	 * Output:addition to the linked list
-	 * Process:Adds to the enemy bullets
+	/**
+	 * Adds bullet to the enemy-bullets list
+	 * @param e the bullet to be added
 	 */
 	public void addBullet(Bullets e) {
 		enemybullets.add(e);
 	}
-	/*
-	 * Input:Bullets instance
-	 * Output:remove a bullet from the linked list
-	 * Process:Removes a enemy bullet
+	/**
+	 * Deletes bullet from the enemy-bullets list
+	 * @param e the bullet to be deleted
 	 */
 	public void deleteBullet(Bullets e) {
 		enemybullets.remove(e);
 	}
-	/*
-	 * Input:N/a
-	 * Output:the player bullet linked list
-	 * Process:returns the enemys bullets so that the player class can see them
+	/**
+	 * Returns the enemy-bullets list
+	 * @return this objects bullet list
 	 */
 	public static LinkedList<Bullets> getBadBulletBorder(){
 		return enemybullets;
 	}
-	/*
-	 * Input:N/a
-	 * Output:returns a border around the enemy
-	 * Process:makes a rectangle around the enemy
+	/**
+	 * Returns a Rectangle object created around the enemy object. Can be used as the enemy's hitbox.
+	 * @return Rectangle objects around this enemy
 	 */
 	public Rectangle Enemybounds() {
 		return new Rectangle(x, y, 36, 36);
 	}
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Takes the border of player bullets and check if the collide with the enemy
+	/**
+	 * Checks if any player bullets have collided with this enemy.
+	 * On collision decreases this enemy's health if the health after this operation
+	 * is less than or equal to zero, the alive flag is set to false.
 	 */
 	public void Collison() {
 		//cycling through player bullets
@@ -85,12 +88,10 @@ public class EnemyShip {
 		}	
 	}
 	
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Updates enemy location automatically based on the difficulty's speed value, 
-	 * checks for collisions, and sets a number of bullets with different speeds based on difficulty,
-	 * and lastly removes bullets past the border while also letting them bounds of the sides
+	/**
+	 * Updates enemy position.
+	 * Adds this enemy's bullets based on x location.
+	 * Removes this enemy's bullets based on y position.
 	 */
 	public void update() {
 		//moves the enemy
@@ -132,10 +133,9 @@ public class EnemyShip {
 			}
 		}	
 	}
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Draws both our enemy and the enemy bullets
+	/**
+	 * Draws the enemy on screen, also calls the draw method of each bullet in this enemy's bullet-list.
+	 * @param g2 the graphics object
 	 */
 	public void draw(Graphics2D g2) {
 		//this for loop calls the draw method of every enemy bullet to draw it
