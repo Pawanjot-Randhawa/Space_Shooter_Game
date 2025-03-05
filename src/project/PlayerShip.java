@@ -24,8 +24,12 @@ public class PlayerShip{
 	//instances of our game and key inputs
 	Gamescreen gs;
 	KeysHandle key;
-	
-	//the constructor set up our player with all the basic values we need 
+
+	/**
+	 * Constructor to initialize enemy object.
+	 * @param g the gamescreen the player will be on
+	 * @param k the keyhandler that will control this player
+	 */
 	public PlayerShip(Gamescreen g, KeysHandle k){
 		goodbullets = new LinkedList<Bullets>();
 		badbullets = EnemyShip.getBadBulletBorder();
@@ -35,42 +39,38 @@ public class PlayerShip{
 		y = 500;
 		speed = 20;		
 	}
-	/*
-	 * Input:Bullets instance
-	 * Output:addition to the linked list
-	 * Process:Adds to the players bullets
+	/**
+	 * Adds bullet to the player-bullets list
+	 * @param e the bullet to be added
 	 */
 	public void addBullet(Bullets e) {
 		goodbullets.add(e);
 	}
-	/*
-	 * Input:Bullets instance
-	 * Output:remove a bullet from the linked list
-	 * Process:Removes a player bullet
+	/**
+	 * Deletes bullet from the player-bullets list
+	 * @param e the bullet to be deleted
 	 */
 	public void deleteBullet(Bullets e) {
 		goodbullets.remove(e);
 	}
-	/*
-	 * Input:N/a
-	 * Output:the player bullet linked list
-	 * Process:returns the players bullets so that the enemy class can see them
+	/**
+	 * Returns the player-bullets list
+	 * @return this objects bullet list
 	 */
 	public static LinkedList<Bullets> getGoodBulletBorder(){
 		return goodbullets;
 	}
-	/*
-	 * Input:N/a
-	 * Output:returns a border around the player
-	 * Process:makes a rectangle around the player
+	/**
+	 * Returns a Rectangle object created around the player object. Can be used as the player's hitbox.
+	 * @return Rectangle objects around this enemy
 	 */
 	public Rectangle PlayerBounds() {
 		return new Rectangle(x, y, 36, 36);
 	}
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Takes the border of enemy bullets and check if the collide with the player
+	/**
+	 * Checks if any enemy bullets have collided with this player.
+	 * On collision decreases the player's health; if the health after this operation
+	 * is less than or equal to zero, the alive flag is set to false.
 	 */
 	public void Collison() {
 		//cycling through enemy bullets
@@ -88,10 +88,10 @@ public class PlayerShip{
 		}			
 	}
 
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Updates player location which allows for movement, checks for collisions, and allows player to shoot
+	/**
+	 * Updates player position.
+	 * Adds this player's bullets based on x location.
+	 * Removes this player's bullets based on y position.
 	 */
 	public void update() {
 		//this if structure checks variables in our key input class to see if the player shooting or moving
@@ -122,10 +122,9 @@ public class PlayerShip{
 			}
 		}
 	}
-	/*
-	 * Input:N/a
-	 * Output:N/a
-	 * Process:Draws both our player and the players bullets
+	/**
+	 * Draws the enemy on screen, also calls the draw method of each bullet in this enemy's bullet-list.
+	 * @param g2 the graphics object
 	 */
 	public void draw(Graphics2D g2) {
 		//this for loop calls the draw method of every player bullet to draw it
