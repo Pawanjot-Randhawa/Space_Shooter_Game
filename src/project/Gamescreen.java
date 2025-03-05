@@ -18,8 +18,10 @@ public class Gamescreen extends JPanel implements Runnable{
 	Thread Game;//a new thread for the actual game
 	PlayerShip player;//player object
 	EnemyShip enemy;//enemy object
-	
-	//the constructor sets up our screen settings and makes it so that our game will run
+
+	/**
+	 * Constructor to set initial game settings.
+	 */
 	public Gamescreen() {
 		running = true;
 		this.setBounds(0, 0, 1000, 950);
@@ -27,11 +29,9 @@ public class Gamescreen extends JPanel implements Runnable{
 		this.setVisible(true);
 		this.addKeyListener(Key);		
 	}
-	/*
-	 * Input:difficulty modifier
-	 * Output: starts game
-	 * Process: The method takes in the difficulty modifier and sets the class variable to the same value.
-	 * It also starts our game thread
+	/**
+	 * Starts the game thread and sets the game settings according to the modifier.
+	 * @param modifier the modifier value that changes the games difficulty settings
 	 */
 	public void startGame(int modifier) {
 		this.difficulty = modifier;
@@ -39,11 +39,8 @@ public class Gamescreen extends JPanel implements Runnable{
 		Game = new Thread(this);
 		Game.start();
 	}
-	/*
-	 * Input:N/A
-	 * Output:N/A
-	 * Process:this method does not output or input anything, and it just responsible for looping our other 2 methods which do all the screen work.
-	 * The method also contains our game loop.
+	/**
+	 * Calls a game loop that will run code at 60 fps while the running flag is true.
 	 */
 	@Override
 	public void run() {
@@ -62,15 +59,12 @@ public class Gamescreen extends JPanel implements Runnable{
 				//this is the most important part of the loop, as the loop trigger these 2 methods 60 times per second
 				update();
 				repaint();
-				//System.out.println("Check");
 				delta--;
 			}		
 		}			
 		}
-	/*
-	 * Input: N/A
-	 * Output: Updates our objects and game variables
-	 * Process: This method calls the update methods for all other objects, while also checking to see if the game should keep running
+	/**
+	 * Calls the update method of all objects in the game. Also contains logic to see if the game should continue to run.
 	 */
 	public void update() {
 		//objects updating
@@ -88,13 +82,8 @@ public class Gamescreen extends JPanel implements Runnable{
 			this.setVisible(false);
 			GUI.Death(2, getDifficulty());
 		}
-		// System.out.println("Check");
 	}
-	/*
-	 * Input: N/A
-	 * Output: Updates all graphics on the screen
-	 * Process: This method call on the graphics methods for all objects, while also drawing out the health bars
-	 */
+
 	public void paintComponent(Graphics g) {	
 		super.paintComponent(g);//paints out all our previously added components
 		Graphics2D g2 = (Graphics2D)g;//allows for 2d graphics, which gives better functionality for this game
@@ -122,7 +111,7 @@ public class Gamescreen extends JPanel implements Runnable{
 		g2.dispose();
 		
 	}
-	/*
+	/**
 	 * Input:N/A
 	 * Output:rests all values to default
 	 * Process:This method resets all objects whenever a new game is created, while also modifying the enemy based on difficulty
@@ -140,18 +129,16 @@ public class Gamescreen extends JPanel implements Runnable{
 			enemy = new EnemyShip(20, 20, 130, 10, difficulty);
 		}		
 	}
-	/*
-	 * Input:N/A
-	 * Output:returns if the game is running
-	 * Process:returns if the game is running
+	/**
+	 * Return the true or false value that causes the game to run.
+	 * @return the value of running
 	 */
 	public boolean getRunning() {
 		return running;
 	}
-	/*
-	 * Input:N/A
-	 * Output:returns the difficulty
-	 * Process:returns the difficulty
+	/**
+	 * Return the difficulty settings of the game.
+	 * @return a string that reads the difficulty
 	 */
 	public String getDifficulty() {
 		if(difficulty==1) {
