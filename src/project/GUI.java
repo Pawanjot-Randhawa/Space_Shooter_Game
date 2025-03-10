@@ -8,9 +8,8 @@ import javax.swing.*;
  * This class is responsible for the all of the screens outside of the actual game.
  * This class is also what takes everything and put it together.
  */
-public class GUI implements ActionListener {
+public class GUI extends JFrame implements ActionListener {
 	//This is the frame that holds all of our componets
-	JFrame frame = new JFrame("Space");
 	
 	//These are the different panels or screens that are in the game
 	JPanel Main = new JPanel();
@@ -52,12 +51,12 @@ public class GUI implements ActionListener {
 	//The constructor just makes the settings for all the different components
 	public void makeGUI(){
 	
-		//Setting up our frame
-		frame.setSize(1000,950);//sets the size
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//closes the program when you hit the x in the top right
-		frame.setResizable(false);//makes it so that the program is unable to be resized
-		frame.setLayout(null);//allows me to place all other components wherever i want
-		frame.setLocationRelativeTo(null);//opens program in the center
+		//Setting up our GUI
+		setSize(1000,950);//sets the size
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//closes the program when you hit the x in the top right
+		setResizable(false);//makes it so that the program is unable to be resized
+		setLayout(null);//allows me to place all other components wherever i want
+		setLocationRelativeTo(null);//opens program in the center
 		
 		//Setting up all the various panels
 		Main.setBounds(0, 0, 1000, 950);//sets the size of the panels
@@ -182,16 +181,16 @@ public class GUI implements ActionListener {
 		Main.add(title);
 		Main.add(Impossible);
 				
-		frame.add(Main);
-		frame.add(Instructions);
-		frame.add(Deathscreen);
-		frame.add(Game);
+		add(Main);
+		add(Instructions);
+		add(Deathscreen);
+		add(Game);
 			
 		Main.setVisible(true);
 		Instructions.setVisible(false);
 		Deathscreen.setVisible(false);
 		Game.setVisible(false);
-		frame.setVisible(true);		
+		setVisible(true);
 	}
 /*
  * 	Input:gets input from buttons
