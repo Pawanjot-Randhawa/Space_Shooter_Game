@@ -9,8 +9,9 @@ import javax.swing.*;
  * This class is also what takes everything and put it together.
  */
 public class GUI extends JFrame implements ActionListener {
-	//This is the frame that holds all of our componets
-	
+	//private varibles used for creating our PanelSwitcher
+	private JPanel SwitchPanel;
+	private CardLayout cl;
 	//These are the different panels or screens that are in the game
 	JPanel Main = new JPanel();
 	JPanel Instructions = new JPanel();
@@ -59,6 +60,10 @@ public class GUI extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);//opens program in the center
 		
 		//Setting up all the various panels
+
+		cl = new CardLayout();
+		SwitchPanel = new JPanel(cl);
+
 		Main.setBounds(0, 0, 1000, 950);//sets the size of the panels
 		Main.setBackground(Color.gray);//sets the color
 		Main.setLayout(null);//allows me to place all other components wherever i want
@@ -291,5 +296,8 @@ public class GUI extends JFrame implements ActionListener {
 			
 		}
 
+	}
+	public void switchTo(String panelName) {
+		cl.show(SwitchPanel, panelName);
 	}
 }
