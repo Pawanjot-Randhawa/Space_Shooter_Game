@@ -2,6 +2,7 @@ package project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel{
 
@@ -21,7 +22,7 @@ public class MenuPanel extends JPanel{
     //radio button group
     ButtonGroup difficulty = new ButtonGroup();
 
-    public MenuPanel() {
+    public MenuPanel(ActionListener listener) {
         //panel settings
         setBounds(0, 0, 1000, 950);//sets the size of the panels
         setBackground(Color.gray);//sets the color
@@ -34,31 +35,31 @@ public class MenuPanel extends JPanel{
         //<editor-fold desc="button settings">
         InstructionB.setBounds(50, 650, 100, 60);//setting the size and location
         InstructionB.setFocusable(false);//removes a border behind the buttons
-        //InstructionB.addActionListener(this);//allows the buttons to receive input
+        InstructionB.addActionListener(listener);//allows the buttons to receive input
 
         Play.setBounds(450, 650, 100, 50);
         Play.setFocusable(false);
-        //Play.addActionListener(this);
+        Play.addActionListener(listener);
 
         Easy.setBounds(700, 650, 100, 100);
         Easy.setFocusable(false);
         Easy.setContentAreaFilled(false);
-        //Easy.addActionListener(this);
+        Easy.addActionListener(listener);
 
         Meduim.setBounds(800, 650, 100, 100);
         Meduim.setFocusable(false);
         Meduim.setContentAreaFilled(false);
-        //Meduim.addActionListener(this);
+        Meduim.addActionListener(listener);
 
         Hard.setBounds(900, 650, 100, 100);
         Hard.setFocusable(false);
         Hard.setContentAreaFilled(false);
-        //Hard.addActionListener(this);
+        Hard.addActionListener(listener);
 
         Impossible.setBounds(700, 750, 100, 100);
         Impossible.setFocusable(false);
         Impossible.setContentAreaFilled(false);
-        //Impossible.addActionListener(this);
+        Impossible.addActionListener(listener);
         //</editor-fold>
 
         //adding buttons to group
@@ -77,5 +78,10 @@ public class MenuPanel extends JPanel{
         add(Impossible);
 
 
+    }
+
+    public String getDifficulty(){
+        String difficulty = this.difficulty.getSelection().getActionCommand();
+        return difficulty;
     }
 }
