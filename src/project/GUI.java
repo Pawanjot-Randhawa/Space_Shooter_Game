@@ -185,6 +185,11 @@ public class GUI extends JFrame implements ActionListener {
 		Main.add(Hard);
 		Main.add(title);
 		Main.add(Impossible);
+
+		SwitchPanel.add(Main, "Main");
+		SwitchPanel.add(Instructions, "Instructions");
+		SwitchPanel.add(Game, "Game");
+		SwitchPanel.add(Deathscreen, "Deathscreen");
 				
 		add(Main);
 		add(Instructions);
